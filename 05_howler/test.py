@@ -90,3 +90,12 @@ def test_file():
         finally:
             if os.path.isfile(out_file):
                 os.remove(out_file)
+
+# --------------------------------------------------
+def test_ee():
+    """Test whether --ee flag works"""
+
+    for flag in ['--ee']:
+        rv, output = getstatusoutput(f'{prg} {flag} "heLLo The1E"')
+        assert rv == 0
+        assert output.strip() == 'hello the1e'

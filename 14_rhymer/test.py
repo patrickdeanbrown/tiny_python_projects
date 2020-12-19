@@ -24,6 +24,7 @@ def test_usage():
         assert out.lower().startswith('usage')
 
 
+
 # --------------------------------------------------
 def test_take():
     """leading consonant"""
@@ -33,6 +34,7 @@ def test_take():
     assert out[0] == 'bake'
     assert out[-1] == 'zake'
 
+# -------------------------------------------------
 
 # --------------------------------------------------
 def test_chair():

@@ -2,6 +2,7 @@
 """tests for crowsnest.py"""
 
 import os
+import string
 from subprocess import getstatusoutput, getoutput
 
 prg = './crowsnest.py'
@@ -13,6 +14,7 @@ consonant_words = [
 ]
 vowel_words = ['aviso', 'eel', 'iceberg', 'octopus', 'upbound']
 template = 'Ahoy, Captain, {} {} off the larboard bow!'
+template_star = 'Ahoy, Captain, {} {} off the starboard bow!'
 
 
 # --------------------------------------------------
@@ -66,3 +68,20 @@ def test_vowel_upper():
     for word in vowel_words:
         out = getoutput(f'{prg} {word.upper()}')
         assert out.strip() == template.format('an', word.upper())
+
+# --------------------------------------------------
+def test_starboard():
+    """tests use of the --starboard flag"""
+
+    for word in vowel_words:
+        out = getoutput(f"{prg} {word} --starboard")
+        assert out.strip() == template_star.format("an", word)
+
+# --------------------------------------------------
+def test_incorrect_character():
+
+    for char in string.punctuation:
+        if char not in "\"\\\`":
+            print(char)
+            out = getoutput(f"{prg} \"{char}\"")
+            assert out.startswith("Error:")

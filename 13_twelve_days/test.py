@@ -6,18 +6,19 @@ import random
 import re
 import string
 from subprocess import getstatusoutput, getoutput
+import twelve_days
 
 prg = './twelve_days.py'
 day_one = '\n'.join([
-    'On the first day of Christmas,', 'My true love gave to me,',
-    'A partridge in a pear tree.'
+    '\nOn the first day of Christmas,', 'My true love gave to me,',
+    'A partridge in a pear tree.\n'
 ])
 
 day_two = '\n'.join([
-    'On the second day of Christmas,',
+    '\nOn the second day of Christmas,',
     'My true love gave to me,',
     'Two turtle doves,',
-    'And a partridge in a pear tree.'
+    'And a partridge in a pear tree.\n'
 ])
 
 
@@ -46,6 +47,7 @@ def test_bad_num():
         rv, out = getstatusoutput(f'{prg} -n {n}')
         assert rv != 0
         assert re.search(f'--num "{n}" must be between 1 and 12', out)
+
 
 
 # --------------------------------------------------

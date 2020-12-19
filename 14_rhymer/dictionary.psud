@@ -1,0 +1,10 @@
+word.txt ----> dictionary.py -----> consonant word stems file
+
+1) Read in words from the English dictionary
+2) Clean words up to lowercase, remove whitespace
+3) Put words in a list
+
+1) Iterate across list word by word
+2) Use regexes to remove leading consonants of any length
+3) Add leading consonants to a list if not already there
+4) sort leading consonants into alphabetical order

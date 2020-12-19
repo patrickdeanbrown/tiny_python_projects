@@ -15,6 +15,9 @@ now = '../inputs/now.txt'
 def seed_flag():
     return '-s' if random.randint(0, 1) else '--seed'
 
+# --------------------------------------------------
+def ascii_flag():
+    return '-n' if random.randint(0, 1) else '--nonascii'
 
 # --------------------------------------------------
 def test_exists():
@@ -43,6 +46,19 @@ def test_text1():
 
     for seed, expected in tests:
         rv, out = getstatusoutput(f'{prg} {seed_flag()} {seed} "{in_text}"')
+        assert rv == 0
+        assert out.strip() == expected
+
+# --------------------------------------------------
+def test_non_ascii():
+    """Test"""
+
+    in_text = 'The quick brown fox jumps over the lazy dog.'
+    tests = [('1', 'th3 QU1(k |3rO\\/\\/n |=ox jump5 OveR t|-|e |_4zY dOg.'),
+             ('3', 'th3 qu1(k |3ROwn |=ox jUm|`5 O\\/3r the l4ZY |)O(-.')]
+
+    for seed, expected in tests:
+        rv, out = getstatusoutput(f'{prg} {seed_flag()} {seed} {ascii_flag()} "{in_text}"')
         assert rv == 0
         assert out.strip() == expected
 

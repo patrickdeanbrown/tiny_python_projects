@@ -7,6 +7,7 @@ import random
 import re
 import string
 from subprocess import getstatusoutput
+import bottles
 
 prg = './bottles.py'
 
@@ -57,6 +58,21 @@ def test_str():
     assert rv != 0
     assert re.search(f"invalid int value: '{bad}'", out)
 
+# --------------------------------------------------
+# def test_verse():
+#     """Test a verse of the song"""
+#     last_verse = bottles.verse(1)
+#     assert last_verse == '\n'.join([
+#         '1 bottle of beer on the wall,', '1 bottle of beer,',
+#         'Take one down, pass it around,',
+#         'No more bottles of beer on the wall!'
+#     ])
+
+#     two_bottles = bottles.verse(2)
+#     assert two_bottles == '\n'.join([
+#         '2 bottles of beer on the wall,', '2 bottles of beer,',
+#         'Take one down, pass it around,', '1 bottle of beer on the wall!'
+#     ])
 
 # --------------------------------------------------
 def test_one():
